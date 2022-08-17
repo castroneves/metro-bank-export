@@ -13,5 +13,6 @@ const val FREEAGENT_API_SECRET = ""
 fun main() {
     MetrobankStatementGrabber().downloadStatements()
     val statements: List<Statement> = StatementReader().fetchStatements(MONTHS_BACK)
-    FreeAgentClient().transformAndSendStatements(statements)
+    FreeAgentClient().transformAndSendStatements(statements, FREEAGENT_BANK_ACCOUNT_ID)
+    FreeAgentClient.httpService.stop()
 }
