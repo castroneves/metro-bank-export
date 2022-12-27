@@ -63,6 +63,9 @@ class MetrobankStatementGrabber {
     }
 
     private fun clickDownload(driver: ChromeDriver) {
-        driver.findElementsByClassName("app-simple-button").filter { it.text.contains("Export") }[0].click()
+        driver.findElementsByClassName("download-selector-button")[0].click()
+        driver.findElementsByClassName("download-item-content")[0].click()
+        println()
+//        driver.findElementsByClassName("download-selector-button").filter { it.text.contains("Export") }[0].click()
     }
 }
