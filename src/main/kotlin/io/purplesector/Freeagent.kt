@@ -34,8 +34,10 @@ class FreeAgentClient {
             res.body("Login success")
             res.body()
         }
+        httpService.awaitInitialization()
         println("server running")
     }
+
     fun transformAndSendStatements(statements: List<Statement>, bankAccountId: String) {
 
         val (oauthService, accessToken) = auth()
@@ -59,7 +61,7 @@ class FreeAgentClient {
             })
 
         val file = File("cred-fa.yaml")
-        if(!file.exists()) {
+        if (!file.exists()) {
             val authUrl = build.authorizationUrl
             println("Open the url below in a browser, auth with freeagent, then enter the authcode that appears in the callback url")
             println(authUrl)
@@ -146,4 +148,8 @@ class FreeAgentClient {
 }
 
 data class FreeAgentStatement(val statement: List<FreeAgentStatementEntry>)
-data class FreeAgentStatementEntry(@JsonProperty("dated_on") val datedOn: String, val amount: String, val description: String)
+data class FreeAgentStatementEntry(
+    @JsonProperty("dated_on") val datedOn: String,
+    val amount: String,
+    val description: String
+)

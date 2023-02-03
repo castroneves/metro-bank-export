@@ -31,6 +31,8 @@ class MetrobankStatementGrabber {
             .map { METROBANK_PASSCODE[it] }
 
         (0..2).forEach { driver.findElementById("security$it").sendKeys(indexes[it].toString()) }
+        val buttonsCookie = driver.findElementsByClassName("metro-cookiebar__btn")
+        buttonsCookie[0].click()
 
         val buttons2 = driver.findElementsByClassName("mat-flat-button")
         buttons2[0].click()
